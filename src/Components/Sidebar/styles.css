@@ -1,0 +1,11 @@
+aside {
+	/*flex-basis: 25;*/
+    background-color: grey;
+    flex: 0 0 300px;
+    padding: 3rem;
+    max-width: 300px;
+}
+
+ul {
+	list-style: none;
+}

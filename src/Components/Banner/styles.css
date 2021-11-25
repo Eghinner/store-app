@@ -1,0 +1,29 @@
+.banner {
+	position: relative;
+	height: 300px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.banner::after {
+	content: "";
+	background-image: url('img.jpg');
+	background-size: cover;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	opacity: 0.5;
+	z-index: -99999;
+}
+
+h1 {
+	position: relative;
+	color: #ffffff;
+	font-size: 5rem;
+	line-height: 0.9;
+	text-align: center;
+}

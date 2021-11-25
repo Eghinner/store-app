@@ -1,0 +1,3 @@
+export const GET_PRODUCTS = 'GET_PRODUCTS'
+export const SELECT_CATEGORY = 'SELECT_CATEGORY'
+export const LOADING = 'LOADING'

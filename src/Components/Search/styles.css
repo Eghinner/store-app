@@ -1,0 +1,22 @@
+.search {
+	display: flex;
+	justify-content: center;
+	padding: 2rem;
+}
+
+input[type='text'] {
+	padding: .7rem;
+	border-top-left-radius: .5rem;
+	border-bottom-left-radius: .5rem;
+	border: none;
+	width: 500px;
+}
+
+input[type='submit'] {
+	padding: .7rem;
+	border-top-right-radius: .5rem;
+	border-bottom-right-radius: .5rem;
+	border: none;
+	background-color: green;
+	color: #fff;
+}
