@@ -2,7 +2,7 @@ import React from 'react'
 import Home from './Components/Home'
 import ProductDetail from './Components/ProductDetail'
 import './App.css'
-import { Link, Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 
 import ProductsState from './Context/ProductsContext.js'
 

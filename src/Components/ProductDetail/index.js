@@ -20,6 +20,7 @@ const ProductDetail = () => {
 		setState(respuesta.data)
 		}
 		GetProduct()
+	// eslint-disable-next-line
 	}, [])
 
 	return (
