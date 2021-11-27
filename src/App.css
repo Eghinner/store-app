@@ -13,10 +13,16 @@ body {
 
 .contenedor {
 	background-color: #fff;
-	display: flex;
+
 	/*min-height: 100vh;*/
 }
 
 a {
 	text-decoration: none;
+}
+
+@media (min-width: 900px) {
+	.contenedor {
+		display: flex;
+	}
 }

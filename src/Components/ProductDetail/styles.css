@@ -1,0 +1,60 @@
+.content {
+	background-color: #fff;
+	margin: auto;
+	width: 90%;
+	min-height: 100vh;
+	padding: 4rem;
+}
+
+.title-product {
+	padding: 1rem;
+	font-size: 1.5rem;
+	color: blue;
+
+}
+
+.product-description {
+	line-height: 1.8;
+}
+
+.img-product {
+	height: 500px;
+	object-fit: contain;
+}
+
+.data {
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem;
+}
+
+
+
+.price {
+	border: solid grey 1px;
+	padding: 0.3rem;
+	border-radius: 5px;
+}
+
+.checked {
+  color: orange;
+}
+
+@media (min-width: 900px) {
+	.content {
+		display: flex;
+		align-items: center;
+	}
+
+	.img-product {
+		flex: 1;
+	}
+
+	.info {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		justify-content: space-between;
+		min-height: 500px;
+	}
+}

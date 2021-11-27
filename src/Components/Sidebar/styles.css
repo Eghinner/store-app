@@ -2,7 +2,6 @@ aside {
     background-color: grey;
     flex: 0 0 300px;
     padding: 3rem;
-    max-width: 300px;
 }
 
 ul {
@@ -14,6 +13,8 @@ span {
 	font-size: 1.2rem;
 }
 
-input[type='radio'] {
-
+@media (min-width: 900px) {
+	aside {
+		max-width: 300px;
+	}
 }

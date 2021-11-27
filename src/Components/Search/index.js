@@ -21,7 +21,7 @@ const Search = () => {
 	const handleSubmit = e => {
 		e.preventDefault()
 		// setSearch(tosearch)
-		navigate(`/?name=${tosearch}`);
+		navigate(`/?name=${tosearch}`)
 		setToSearch('')
 	}
 

@@ -26,7 +26,7 @@ const ProductsState = ({children}) => {
 	const q = searchParams.get('name')
 	useEffect(() => {
 		setSearch(q)
-		// getProducts()
+		getProducts()
 		updateProducts()
 	// eslint-disable-next-line
 	}, [searchParams])

@@ -2,7 +2,7 @@
 	/*background-color: lightblue;*/
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: space-around;
 	padding: 1rem;
 	border-radius: .5rem;
 	max-width: 240px;
@@ -15,7 +15,7 @@
 	box-shadow: 0px 1px 5px 2px lightgrey;
 }
 
-img {
+.img {
 	width: 200px;
 	height: 300px;
 	object-fit: contain;
@@ -30,8 +30,13 @@ button {
 	border-radius: 5px;
 	background-color: transparent;
 	padding: 1rem;
-	width: 80%;
+	width: 90%;
 	border: 1px solid orange;
-	text-align: center;
-	margin: auto;
+	margin: 10px;
+}
+
+button:hover {
+	cursor: pointer;
+	background-color: orange;
+	color: #fff;
 }

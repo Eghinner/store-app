@@ -1,16 +1,21 @@
 import React from 'react'
 import './styles.css'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Product = ({product}) => {
+
+	let navigate = useNavigate()
+
+	const goTo = () => {
+		navigate(`${product.id}`)
+	}
+
 	return (
 		<div className='card'>
 			<h3>{product.title}</h3>
-			<img src={product.image} alt="algo"/>
+			<img className='img' src={product.image} alt="algo"/>
 			<div>${product.price} Precio Ahora</div>
-			<Link to={`product/${product.id}`}>
-				<button>Ver detalle =></button>
-			</Link>
+			<button onClick={goTo}>Ver detalle =></button>
 		</div>
 	)
 }

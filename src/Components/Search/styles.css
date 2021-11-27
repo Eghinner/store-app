@@ -9,7 +9,7 @@ input[type='text'] {
 	border-top-left-radius: .5rem;
 	border-bottom-left-radius: .5rem;
 	border: none;
-	width: 500px;
+
 }
 
 input[type='submit'] {
@@ -19,4 +19,10 @@ input[type='submit'] {
 	border: none;
 	background-color: green;
 	color: #fff;
+}
+
+@media (min-width: 900px) {
+	input[type='text'] {
+		width: 500px;
+	}
 }
