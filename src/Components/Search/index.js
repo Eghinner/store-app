@@ -1,13 +1,13 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import './styles.css'
-import {ProductsContext} from '../../Context/ProductsContext.js'
+// import {ProductsContext} from '../../Context/ProductsContext.js'
 import { useNavigate } from 'react-router-dom'
 
 const Search = () => {
 
 	let navigate = useNavigate()
 
-	const { setSearch } = useContext(ProductsContext)
+	// const { setSearch } = useContext(ProductsContext)
 
 	const [tosearch, setToSearch] = useState('')
 

@@ -28,6 +28,7 @@ const ProductsState = ({children}) => {
 		setSearch(q)
 		// getProducts()
 		updateProducts()
+	// eslint-disable-next-line
 	}, [searchParams])
 
 	const ProductsReducer = (state, action) => {

@@ -3,15 +3,15 @@ import './styles.css'
 import Product from '../Product'
 import {ProductsContext} from '../../Context/ProductsContext.js'
 import Spinner from '../Spinner'
-import { useSearchParams } from 'react-router-dom'
+// import { useSearchParams } from 'react-router-dom'
 
 const Products = () => {
 
-	const [searchParams] = useSearchParams()
+	// const [searchParams] = useSearchParams()
 
-	const q = searchParams.get('name')
+	// const q = searchParams.get('name')
 
-	const { getProducts, products, category, loading, updateProducts, productsfilter } = useContext(ProductsContext)
+	const { getProducts, products, category, loading, productsfilter } = useContext(ProductsContext)
 
 	useEffect(() => {
 		getProducts()
