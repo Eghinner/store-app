@@ -1,21 +1,37 @@
 .card {
-	background-color: lightblue;
+	/*background-color: lightblue;*/
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	padding: 1rem;
 	border-radius: .5rem;
 	max-width: 240px;
-	transition: ease .5s transform;
+	min-height: 700px;
+	transition: ease .5s box-shadow;
 }
 
 .card:hover {
-	transform: scale(1.1);
+	/*transform: scale(1.05);*/
+	box-shadow: 0px 1px 5px 2px lightgrey;
 }
 
 img {
 	width: 200px;
-	height: 200px;
-	object-fit: cover;
+	height: 300px;
+	object-fit: contain;
 }
 
 h3 {
 	/*word-break: break-all;*/
+}
+
+button {
+	color: orange;
+	border-radius: 5px;
+	background-color: transparent;
+	padding: 1rem;
+	width: 80%;
+	border: 1px solid orange;
+	text-align: center;
+	margin: auto;
 }

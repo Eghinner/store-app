@@ -1,30 +1,37 @@
 import React, { useContext } from 'react'
 import './styles.css'
 import { ProductsContext } from '../../Context/ProductsContext.js'
+// import { useParams } from "react-router-dom"
+import { useSearchParams } from 'react-router-dom'
 
-const Sidebar = () => {
+
+const Sidebar = (props) => {
+
+	const [searchParams] = useSearchParams()
+
+	const q = searchParams.get('name')
 
 	const {getCategories} = useContext(ProductsContext)
 
 	const handleChange = e => {
-		const { name, value } = e.target
+		const { value } = e.target
 		getCategories(value)
 	}
 
 	return (
 		<aside>
+			{q ? <p>`Search results to <span>{q}</span>`</p>:null}
 			<h3>Category</h3>
 			<form>
 				<div>
 					<input
-						checked={true}
 						onChange={handleChange}
 						value="all"
 						id="all"
 						type="radio"
 						name="categories"
 					/>
-					<label>All</label>
+					<label htmlFor="all">All</label>
 				</div>
 				<div>
 					<input
@@ -34,7 +41,7 @@ const Sidebar = () => {
 						name="categories"
 						onChange={handleChange}
 					/>
-					<label>Electronics</label>
+					<label htmlFor="electronics">Electronics</label>
 				</div>
 				<div>
 					<input
@@ -44,7 +51,7 @@ const Sidebar = () => {
 						name="categories"
 						onChange={handleChange}
 					/>
-					<label>Jewelery</label>
+					<label htmlFor="jewelery">Jewelery</label>
 				</div>
 				<div>
 					<input
@@ -54,7 +61,7 @@ const Sidebar = () => {
 						name="categories"
 						onChange={handleChange}
 					/>
-					<label>Men's clothing</label>
+					<label htmlFor="men">Men's clothing</label>
 				</div>
 				<div>
 					<input
@@ -64,7 +71,7 @@ const Sidebar = () => {
 						name="categories"
 						onChange={handleChange}
 					/>
-					<label>Women's clothing</label>
+					<label htmlFor="women">Women's clothing</label>
 				</div>
 			</form>
 			</aside>

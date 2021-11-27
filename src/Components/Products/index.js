@@ -1,21 +1,40 @@
 import React, { useEffect, useContext} from 'react'
 import './styles.css'
-import ClienteAxios from '../../Config/ClienteAxios.js'
 import Product from '../Product'
 import {ProductsContext} from '../../Context/ProductsContext.js'
+import Spinner from '../Spinner'
+import { useSearchParams } from 'react-router-dom'
 
 const Products = () => {
 
-	const { getProducts, products, category } = useContext(ProductsContext)
+	const [searchParams] = useSearchParams()
+
+	const q = searchParams.get('name')
+
+	const { getProducts, products, category, loading, updateProducts, productsfilter } = useContext(ProductsContext)
 
 	useEffect(() => {
 		getProducts()
+		// eslint-disable-next-line
 	}, [category])
+
+	// useEffect(() => {
+	// 	q ?? updateProducts(q)
+	// // eslint-disable-next-line
+	// }, [q])
 
 	return (
 		<div className='list-product'>
-			{
-				products.map(product=>(
+			{loading
+				?<Spinner/>
+				: productsfilter.length > 0
+					? productsfilter.map(product=>(
+						<Product
+							key={product.id}
+							product={product}
+						/>
+					))
+				: products.map(product=>(
 					<Product
 						key={product.id}
 						product={product}

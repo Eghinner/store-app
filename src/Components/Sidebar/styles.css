@@ -1,5 +1,4 @@
 aside {
-	/*flex-basis: 25;*/
     background-color: grey;
     flex: 0 0 300px;
     padding: 3rem;
@@ -8,4 +7,13 @@ aside {
 
 ul {
 	list-style: none;
+}
+
+span {
+	font-weight: 900;
+	font-size: 1.2rem;
+}
+
+input[type='radio'] {
+
 }

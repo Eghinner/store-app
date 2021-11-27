@@ -1,10 +1,11 @@
 import React from 'react'
 import './styles.css'
+import { Link } from "react-router-dom"
 
 const index = () => {
 	return (
 		<div className='banner'>
-			<h1>Heyyyyy</h1>
+			<Link to="/"><h1>Heyyyyy</h1></Link>
 		</div>
 	)
 }

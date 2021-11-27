@@ -1,19 +1,34 @@
-import {createContext, useReducer} from 'react'
+import {createContext, useReducer , useEffect} from 'react'
 import {
 	GET_PRODUCTS,
 	SELECT_CATEGORY,
-	LOADING
+	SET_LOADING,
+	SET_SEARCH,
+	UPDATE_PRODUCTS
 } from '../Types'
 import ClienteAxios from '../Config/ClienteAxios.js'
+import { useSearchParams } from 'react-router-dom'
+
 
 export const ProductsContext = createContext()
 
 const ProductsState = ({children}) => {
+
 	const initialState = {
 		products: [],
+		productsfilter: [],
 		category: '',
-		loading: false
+		loading: false,
+		searchstring: null
 	}
+
+	const [searchParams] = useSearchParams()
+	const q = searchParams.get('name')
+	useEffect(() => {
+		setSearch(q)
+		// getProducts()
+		updateProducts()
+	}, [searchParams])
 
 	const ProductsReducer = (state, action) => {
 		switch(action.type) {
@@ -27,10 +42,21 @@ const ProductsState = ({children}) => {
 					...state,
 					category: action.payload
 				}
-			case LOADING:
+			case SET_LOADING:
 				return {
 					...state,
 					loading: action.payload
+				}
+			case SET_SEARCH:
+				return {
+					...state,
+					searchstring: action.payload
+				}
+			case UPDATE_PRODUCTS:
+				return {
+					...state,
+					productsfilter: state.searchstring === null ? []
+					: state.products.filter(pro=>pro.title.includes(state.searchstring))
 				}
 			default:
 				return state
@@ -42,15 +68,20 @@ const ProductsState = ({children}) => {
 	const getProducts = async () => {
 		if (state.category.trim()==='' || state.category.trim()==='all') {
 			try {
-				const result = await ClienteAxios.get('/products')
+				setLoading(true)
+				const result = await ClienteAxios.get(`/products`)
 				dispatch({
 					type: GET_PRODUCTS,
 					payload: result.data
 				})
 			} catch (err) {
 				console.log(err)
+			} finally {
+				setLoading(false)
 			}
-		} else {
+		}
+		 else {
+			setLoading(true)
 			try {
 				const result = await ClienteAxios.get(`/products/category/${state.category}`)
 				dispatch({
@@ -59,9 +90,10 @@ const ProductsState = ({children}) => {
 				})
 			} catch (err) {
 				console.log(err)
+			} finally {
+				setLoading(false)
 			}
 		}
-
 	}
 
 	const getCategories = category => {
@@ -71,22 +103,40 @@ const ProductsState = ({children}) => {
 		})
 	}
 
-	const setLoading = (bool) => {
+	const setLoading = bool => {
 		dispatch({
-			type: LOADING,
+			type: SET_LOADING,
 			payload: bool
 		})
 	}
 
+	const setSearch = value => {
+		dispatch({
+			type: SET_SEARCH,
+			payload: value
+		})
+	}
+
+	const updateProducts = value => {
+		dispatch({
+			type: UPDATE_PRODUCTS
+		})
+	}
 
 	return (
 
 		<ProductsContext.Provider
 			value={{
 				products: state.products,
+				productsfilter: state.productsfilter,
 				category: state.category,
+				loading: state.loading,
+				searchstring: state.searchstring,
+				setLoading,
 				getProducts,
-				getCategories
+				getCategories,
+				setSearch,
+				updateProducts
 			}}
 		>
 		{children}
