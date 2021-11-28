@@ -3,13 +3,15 @@ import ClienteAxios from '../../Config/ClienteAxios'
 import { useParams } from 'react-router-dom'
 import Spinner from '../Spinner'
 import './styles.css'
-
+import { useSearchParams } from 'react-router-dom'
 
 const ProductDetail = () => {
 
+	const [setSearchParams] = useSearchParams()
+
 	const [state, setState] = useState([])
 
-	const { rating } = state
+	const { rating, title } = state
 
 	let {id} = useParams();
 	console.log(state)
@@ -22,6 +24,10 @@ const ProductDetail = () => {
 		GetProduct()
 	// eslint-disable-next-line
 	}, [])
+
+	function FakeParams() {
+		setSearchParams({title})
+	}
 
 	return (
 		<React.Fragment>
@@ -41,7 +47,7 @@ const ProductDetail = () => {
 								</div>
 								<div className="price">${state.price}</div>
 							</div>
-							<button type="button" disabled>Buy!</button>
+							<button onClick={FakeParams} type="button">Buy!</button>
 					</div>
 					</div>
 					</>

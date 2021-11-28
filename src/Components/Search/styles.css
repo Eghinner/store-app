@@ -9,8 +9,9 @@ input[type='text'] {
 	border-top-left-radius: .5rem;
 	border-bottom-left-radius: .5rem;
 	border: none;
-
+	outline: none;
 }
+
 
 input[type='submit'] {
 	padding: .7rem;

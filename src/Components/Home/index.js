@@ -1,10 +1,33 @@
-import React from 'react'
+import React, {useEffect, useContext} from 'react'
 import Banner from '../Banner'
 import Search from '../Search'
 import Products from '../Products'
 import Sidebar from '../Sidebar'
+import { useSearchParams } from 'react-router-dom'
+import { ProductsContext } from '../../Context/ProductsContext.js'
 
 const Home = () => {
+
+
+
+	const {category, searchstring} = useContext(ProductsContext)
+
+	const [searchParams, setSearchParams] = useSearchParams()
+
+	useEffect(() => {
+		if (category.trim()!=='' || searchstring.trim()!=='') {
+
+			if (category.trim()==='') {
+				setSearchParams({'q':searchstring})
+			} else if (searchstring.trim()==='') {
+				setSearchParams({'category':category})
+			} else {
+				setSearchParams({'category':category, 'q':searchstring})
+			}
+		}
+	// eslint-disable-next-line
+	}, [category, searchstring, searchParams])
+
 	return (
 		<React.Fragment>
 			<Banner/>

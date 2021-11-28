@@ -1,32 +1,25 @@
 import React, { useContext } from 'react'
 import './styles.css'
 import { ProductsContext } from '../../Context/ProductsContext.js'
-// import { useParams } from "react-router-dom"
-import { useSearchParams } from 'react-router-dom'
 
+const Sidebar = () => {
 
-const Sidebar = (props) => {
-
-	const [searchParams] = useSearchParams()
-
-	const q = searchParams.get('name')
 
 	const {getCategories} = useContext(ProductsContext)
 
 	const handleChange = e => {
-		const { value } = e.target
+		const {value} = e.target
 		getCategories(value)
 	}
 
 	return (
 		<aside>
-			{q ? <p>`Search results to <span>{q}</span>`</p>:null}
 			<h3>Category</h3>
 			<form>
 				<div>
 					<input
 						onChange={handleChange}
-						value="all"
+						value=""
 						id="all"
 						type="radio"
 						name="categories"

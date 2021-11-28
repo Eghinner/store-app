@@ -1,10 +1,11 @@
-import {createContext, useReducer , useEffect} from 'react'
+import {createContext, useReducer, useEffect} from 'react'
 import {
 	GET_PRODUCTS,
 	SELECT_CATEGORY,
 	SET_LOADING,
 	SET_SEARCH,
-	UPDATE_PRODUCTS
+	UPDATE_PRODUCTS,
+	RESET
 } from '../Types'
 import ClienteAxios from '../Config/ClienteAxios.js'
 import { useSearchParams } from 'react-router-dom'
@@ -19,17 +20,22 @@ const ProductsState = ({children}) => {
 		productsfilter: [],
 		category: '',
 		loading: false,
-		searchstring: null
+		searchstring: ''
 	}
 
 	const [searchParams] = useSearchParams()
-	const q = searchParams.get('name')
+
+	const hascategoryurlquery = searchParams.has('category')
+	const hasquerysearch = searchParams.has('q')
+	const categoryurlquery = searchParams.get('category')
+	const querysearch = searchParams.get('q')
+
 	useEffect(() => {
-		setSearch(q)
-		getProducts()
-		updateProducts()
+		if (hasquerysearch) setSearch(querysearch)
+		if (hascategoryurlquery) getCategories(categoryurlquery)
+			updateProducts()
 	// eslint-disable-next-line
-	}, [searchParams])
+	}, [])
 
 	const ProductsReducer = (state, action) => {
 		switch(action.type) {
@@ -51,13 +57,20 @@ const ProductsState = ({children}) => {
 			case SET_SEARCH:
 				return {
 					...state,
-					searchstring: action.payload
+					searchstring: action.payload.toLowerCase()
 				}
 			case UPDATE_PRODUCTS:
 				return {
 					...state,
-					productsfilter: state.searchstring === null ? []
-					: state.products.filter(pro=>pro.title.includes(state.searchstring))
+					productsfilter: state.searchstring.trim() === '' ? []
+					: state.products.filter(pro=>pro.title.toLowerCase().includes(state.searchstring))
+				}
+			case RESET:
+				return {
+					...state,
+					productsfilter: [],
+					category: '',
+					searchstring: ''
 				}
 			default:
 				return state
@@ -67,33 +80,22 @@ const ProductsState = ({children}) => {
 	const [state, dispatch] = useReducer(ProductsReducer, initialState)
 
 	const getProducts = async () => {
-		if (state.category.trim()==='' || state.category.trim()==='all') {
-			try {
-				setLoading(true)
-				const result = await ClienteAxios.get(`/products`)
-				dispatch({
-					type: GET_PRODUCTS,
-					payload: result.data
-				})
-			} catch (err) {
-				console.log(err)
-			} finally {
-				setLoading(false)
-			}
-		}
-		 else {
+		let result;
+		try {
 			setLoading(true)
-			try {
-				const result = await ClienteAxios.get(`/products/category/${state.category}`)
-				dispatch({
-					type: GET_PRODUCTS,
-					payload: result.data
-				})
-			} catch (err) {
-				console.log(err)
-			} finally {
-				setLoading(false)
+			if (state.category.trim()==='' || state.category.trim()==='all') {
+				 result = await ClienteAxios.get(`/products`)
+			} else {
+				 result = await ClienteAxios.get(`/products/category/${categoryurlquery}`)
 			}
+			dispatch({
+				type: GET_PRODUCTS,
+				payload: result.data
+			})
+		} catch (err) {
+			console.log(err)
+		} finally {
+			setLoading(false)
 		}
 	}
 
@@ -124,6 +126,12 @@ const ProductsState = ({children}) => {
 		})
 	}
 
+	const reseto = () => {
+		dispatch({
+			type: RESET
+		})
+	}
+
 	return (
 
 		<ProductsContext.Provider
@@ -137,7 +145,8 @@ const ProductsState = ({children}) => {
 				getProducts,
 				getCategories,
 				setSearch,
-				updateProducts
+				updateProducts,
+				reseto
 			}}
 		>
 		{children}

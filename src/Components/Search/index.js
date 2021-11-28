@@ -1,35 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './styles.css'
-// import {ProductsContext} from '../../Context/ProductsContext.js'
-import { useNavigate } from 'react-router-dom'
+import {ProductsContext} from '../../Context/ProductsContext.js'
 
 const Search = () => {
 
-	let navigate = useNavigate()
-
-	// const { setSearch } = useContext(ProductsContext)
+	const { setSearch } = useContext(ProductsContext)
 
 	const [tosearch, setToSearch] = useState('')
 
 	const handleChange = e => {
-		setToSearch(
-			// ...tosearch,
-			e.target.value
-		)
+		const {value} = e.target
+		setToSearch(value)
+		setSearch(value)
 	}
 
-	const handleSubmit = e => {
+	const handleOnChange = e => {
 		e.preventDefault()
-		// setSearch(tosearch)
-		navigate(`/?name=${tosearch}`)
-		setToSearch('')
+		// if (tosearch.trim() === '') {
+		// 	return
+		// }
+		// setToSearch('')
 	}
 
 	return (
 		<React.Fragment>
 			<div className='search'>
 				<form
-					onSubmit={handleSubmit}
+					onSubmit={handleOnChange}
 				>
 					<input
 						onChange={handleChange}
@@ -37,7 +34,9 @@ const Search = () => {
 						placeholder='Search'
 						value={tosearch}
 					/>
-					<input type="submit"/>
+					{
+						//<input type="submit"/>
+					}
 				</form>
 			</div>
 		</React.Fragment>

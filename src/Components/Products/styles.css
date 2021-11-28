@@ -6,3 +6,9 @@
 	gap: 1rem;
 	width: 100%;
 }
+
+.alert {
+	width: 100%;
+	background-color: lightgrey;
+	max-height: 30px;
+}

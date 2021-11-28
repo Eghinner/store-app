@@ -1,13 +1,19 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import './styles.css'
 import { Link } from "react-router-dom"
+import {ProductsContext} from '../../Context/ProductsContext.js'
 
-const index = () => {
+const Home = () => {
+
+	const {reseto} = useContext(ProductsContext)
+
+
+
 	return (
-		<div className='banner'>
+		<div className='banner' onClick={()=>reseto()}>
 			<Link to="/"><h1>My Store</h1></Link>
 		</div>
 	)
 }
 
-export default index
+export default Home
