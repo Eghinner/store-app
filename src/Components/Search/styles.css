@@ -12,14 +12,13 @@ input[type='text'] {
 	outline: none;
 }
 
-
-input[type='submit'] {
-	padding: .7rem;
+select {
+	padding: 0.7rem;
+	outline: none;
+	border-left: 1px grey solid !important;
+	border: none;
 	border-top-right-radius: .5rem;
 	border-bottom-right-radius: .5rem;
-	border: none;
-	background-color: green;
-	color: #fff;
 }
 
 @media (min-width: 900px) {

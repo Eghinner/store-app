@@ -8,21 +8,36 @@
 }
 
 body {
-	background-color: red;
-}
-
-.contenedor {
-	background-color: #fff;
-
-	/*min-height: 100vh;*/
-}
-
-a {
-	text-decoration: none;
+	background-color: #f30000;
 }
 
 @media (min-width: 900px) {
 	.contenedor {
 		display: flex;
 	}
+}
+
+::-webkit-scrollbar {
+      width: 12px;
+
+}
+
+::-webkit-scrollbar-track {
+      background: linear-gradient(#ff0080, #ff0000);
+
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 3rem;
+      background-color: #ffa500;
+}
+
+a {
+	text-decoration: none;
+}
+
+.contenedor {
+	background-color: #fff;
+
+	min-height: 80vh;
 }

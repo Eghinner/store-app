@@ -33,9 +33,9 @@ const ProductsState = ({children}) => {
 	useEffect(() => {
 		if (hasquerysearch) setSearch(querysearch)
 		if (hascategoryurlquery) getCategories(categoryurlquery)
-			updateProducts()
+			// updateProducts()
 	// eslint-disable-next-line
-	}, [])
+	}, [searchParams])
 
 	const ProductsReducer = (state, action) => {
 		switch(action.type) {
@@ -93,7 +93,7 @@ const ProductsState = ({children}) => {
 				payload: result.data
 			})
 		} catch (err) {
-			console.log(err)
+			console.error(err)
 		} finally {
 			setLoading(false)
 		}

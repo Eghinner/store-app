@@ -1,3 +1,4 @@
+
 .content {
 	background-color: #fff;
 	margin: auto;
@@ -35,11 +36,11 @@
 }
 
 .checked {
-  color: orange;
+	color: orange;
 }
 
 .img-product{
-max-width: 200px;
+	max-width: 200px;
 }
 
 @media (min-width: 900px) {
@@ -49,7 +50,7 @@ max-width: 200px;
 	}
 
 	.img-product {
-max-width: 50%;
+		max-width: 50%;
 
 	}
 
@@ -62,3 +63,4 @@ max-width: 50%;
 		min-height: 500px;
 	}
 }
+

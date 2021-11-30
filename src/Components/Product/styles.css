@@ -1,5 +1,4 @@
 .card {
-	/*background-color: lightblue;*/
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
@@ -11,7 +10,6 @@
 }
 
 .card:hover {
-	/*transform: scale(1.05);*/
 	box-shadow: 0px 1px 5px 2px lightgrey;
 }
 
@@ -21,22 +19,65 @@
 	object-fit: contain;
 }
 
-h3 {
-	/*word-break: break-all;*/
-}
-
 button {
-	color: orange;
+	color: #ff8a14;
 	border-radius: 5px;
 	background-color: transparent;
 	padding: 1rem;
 	width: 90%;
-	border: 1px solid orange;
+	border: 1px solid #ff8a14;
 	margin: 10px;
+	transition: ease .4s background-color;
 }
 
-button:hover {
+.card:hover > .btn {
 	cursor: pointer;
-	background-color: orange;
+	background-color: #ff8a14;
 	color: #fff;
+}
+
+.want {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+:root {
+	--price-tag-background: rgba(0, 0, 0, 0.3);
+	--price-tag-height: 2rem;
+}
+
+.price-tag {
+	max-width: 5rem;
+	background-color: var(--price-tag-background);
+	color: #fff;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	height: 2rem;
+	padding: .25rem .5rem;
+}
+
+.price-tag::before {
+	content: '';
+	border-color: transparent var(--price-tag-background) transparent transparent;
+	border-style: solid;
+	border-width: 1rem;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	transform: translate(-100%, 0px);
+}
+
+.price-tag::after {
+	content: '';
+	background: #fff;
+	border-radius: 50%;
+	left: 0;
+	position: absolute;
+	top: 50%;
+	transform: translate(-0.5rem, -50%);
+	height: 0.5rem;
+	width: 0.5rem;
 }

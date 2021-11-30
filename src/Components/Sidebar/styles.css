@@ -1,7 +1,7 @@
 aside {
-    background-color: grey;
-    flex: 0 0 300px;
-    padding: 3rem;
+	background-color: #f37600;
+	flex: 0 0 300px;
+	padding: 3rem;
 }
 
 ul {
@@ -17,4 +17,83 @@ span {
 	aside {
 		max-width: 300px;
 	}
+
+	.form-side {
+		flex-direction: column;
+	}
+}
+
+.form-side {
+	display: flex;
+}
+
+.label {
+	padding: .5rem;
+	margin: 3px;
+	border-radius: 5px;
+	background-color: #fff;
+	align-items: center;
+	display: inline-flex;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.mystyle {
+	background-color: #ffd700;
+	box-shadow: 1px 1px 5px 1px gray;
+}
+
+.label__input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+.label__input:checked + .label__circle {
+	/*background-color: green;*/
+}
+
+.label__input:checked + .label__circle::before {
+	/*box-shadow: inset 0 0 0 0.4375em #00005c;*/
+}
+
+/*.label__circle {
+	display: flex;
+	align-items: center;
+	padding: 0.375em 0.75em 0.375em 0.375em;
+	border-radius: 99em;
+	transition: 0.25s ease;
+}
+
+.label__circle::before {
+	display: flex;
+	flex-shrink: 0;
+	content: "";
+	background-color: #fff;
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 50%;
+	margin-right: 0.375em;
+	transition: 0.25s ease;
+	box-shadow: inset 0 0 0 0.125em #00005c;
+}
+*/
+.label__radio {
+	/* Rounded border */
+	/*border-radius: 9999px;
+	height: 16px;
+	width: 16px;*/
+
+	/* For not selected radio */
+	/*background-color: transparent;*/
+}
+
+.label__radio--selected {
+	/* For selected radio */
+	/*background-color: #00449e;*/
 }

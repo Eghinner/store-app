@@ -27,14 +27,21 @@ const Products = () => {
 	useEffect(() => {
 		getProducts()
 	// eslint-disable-next-line
-	}, [categorysearch, category])
+	}, [
+	categorysearch
+	// category
+	])
 
 	useEffect(() => {
 		// if (hasquerysearch||categoryurlquery) {
 			updateProducts()
 		// }
 	// eslint-disable-next-line
-	}, [searchParams, category, products])
+	}, [
+	searchParams,
+	category,
+	products
+	])
 
 	return (
 		<React.Fragment>

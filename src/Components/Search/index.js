@@ -4,7 +4,21 @@ import {ProductsContext} from '../../Context/ProductsContext.js'
 
 const Search = () => {
 
-	const { setSearch } = useContext(ProductsContext)
+	const { setSearch,
+		// products
+	} = useContext(ProductsContext)
+
+	// console.log(products.sort(function (a, b) {
+	// 	if (a.title > b.title) {
+	// 		return 1;
+	// 	}
+	// 	if (a.title < b.title) {
+	// 		return -1;
+	// 	}
+	// 	return 0;
+	// }))
+
+
 
 	const [tosearch, setToSearch] = useState('')
 
@@ -16,10 +30,10 @@ const Search = () => {
 
 	const handleOnChange = e => {
 		e.preventDefault()
-		// if (tosearch.trim() === '') {
-		// 	return
-		// }
-		// setToSearch('')
+	}
+
+	const selectChange = e => {
+
 	}
 
 	return (
@@ -34,9 +48,11 @@ const Search = () => {
 						placeholder='Search'
 						value={tosearch}
 					/>
-					{
-						//<input type="submit"/>
-					}
+						<select onChange={selectChange}>
+							<option defaultValue value="defect">Defecto</option>
+							<option value="rate">Rate</option>
+							<option value="price">Price</option>
+						</select>
 				</form>
 			</div>
 		</React.Fragment>

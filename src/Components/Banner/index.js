@@ -7,8 +7,6 @@ const Home = () => {
 
 	const {reseto} = useContext(ProductsContext)
 
-
-
 	return (
 		<div className='banner' onClick={()=>reseto()}>
 			<Link to="/"><h1>My Store</h1></Link>

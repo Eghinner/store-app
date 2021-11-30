@@ -14,8 +14,8 @@ const Product = ({product}) => {
 		<div className='card'>
 			<h3>{product.title}</h3>
 			<img className='img' src={product.image} alt="algo"/>
-			<div>${product.price} Precio Ahora</div>
-			<button onClick={goTo}>Ver detalle =></button>
+			<div className="want"><div className='price-tag'>${product.price}</div> Precio Ahora</div>
+			<button className="btn" onClick={goTo}>Ver detalle =></button>
 		</div>
 	)
 }
