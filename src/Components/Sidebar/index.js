@@ -26,7 +26,7 @@ const Sidebar = () => {
 
 	return (
 		<aside>
-			<h3>Category</h3>
+			<h3 className='h3'>Category</h3>
 			<form className="form-side">
 				<label className="label">
 					<input

@@ -1,10 +1,24 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import './styles.css'
 import {ProductsContext} from '../../Context/ProductsContext.js'
+import { useSearchParams } from 'react-router-dom'
 
 const Search = () => {
 
-	const { setSearch,
+	const [tosearch, setToSearch] = useState('')
+
+	const [searchParams, setSearchParams] = useSearchParams()
+
+	const querysearch = searchParams.get('q')
+
+	useEffect(() => {
+		searchParams.has('q')&&setToSearch(querysearch)
+		// eslint-disable-next-line
+	}, [querysearch])
+
+	const {
+		setSearch
+		// searchstring
 		// products
 	} = useContext(ProductsContext)
 
@@ -18,13 +32,11 @@ const Search = () => {
 	// 	return 0;
 	// }))
 
-
-
-	const [tosearch, setToSearch] = useState('')
-
 	const handleChange = e => {
 		const {value} = e.target
-		setToSearch(value)
+		setToSearch(
+			value
+			)
 		setSearch(value)
 	}
 
@@ -33,7 +45,11 @@ const Search = () => {
 	}
 
 	const selectChange = e => {
-
+		const {value} = e.target
+		const currentParams = Object.fromEntries([...searchParams])
+		currentParams.sort = value
+		// console.log(currentParams)
+		setSearchParams(currentParams)
 	}
 
 	return (
@@ -43,13 +59,14 @@ const Search = () => {
 					onSubmit={handleOnChange}
 				>
 					<input
+						onBlur={()=>setToSearch('')}
 						onChange={handleChange}
 						type="text"
 						placeholder='Search'
 						value={tosearch}
 					/>
 						<select onChange={selectChange}>
-							<option defaultValue value="defect">Defecto</option>
+							<option value="defect">Defecto</option>
 							<option value="rate">Rate</option>
 							<option value="price">Price</option>
 						</select>
