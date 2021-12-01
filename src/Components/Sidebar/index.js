@@ -5,23 +5,29 @@ import { ProductsContext } from '../../Context/ProductsContext.js'
 
 const Sidebar = () => {
 
-	const {getCategories, category} = useContext(ProductsContext)
+	const {getCategories, category, setRate, rate} = useContext(ProductsContext)
 
 	const nodo = document.querySelectorAll('input[type=radio]')
 
 	useEffect(() => {
 		for (var i = nodo.length - 1; i >= 0; i--) {
-			if (category === nodo[i].value) {
+			if (category === nodo[i].value || rate === nodo[i].value) {
 				nodo[i].parentNode.classList.add("mystyle")
 			} else {
 				nodo[i].parentNode.classList.remove("mystyle")
+				nodo[i].checked = false
 			}
 		}
-	}, [category, nodo])
+	}, [category, nodo, rate])
 
-	const handleChange = e => {
+	const handleChangeCategory = e => {
 		const {value} = e.target
 		getCategories(value)
+	}
+
+	const handleChangeRate = e => {
+		const {value} = e.target
+		setRate(value)
 	}
 
 	return (
@@ -31,25 +37,21 @@ const Sidebar = () => {
 				<label className="label">
 					<input
 						className="label__input"
-						onChange={handleChange}
+						onChange={handleChangeCategory}
 						value=""
-						id="all"
 						type="radio"
 						name="categories"
 					/>
-					<div className="label__circle">
-						<div className="label__radio label__radio--selected"></div>
-					</div>
+					<div className="label__circle"></div>
 					All
 				</label>
 				<label className="label">
 					<input
 						className="label__input"
 						value="electronics"
-						id="electronics"
 						type="radio"
 						name="categories"
-						onChange={handleChange}
+						onChange={handleChangeCategory}
 					/>
 					<div className="label__circle"></div>
 					Electronics
@@ -58,10 +60,9 @@ const Sidebar = () => {
 					<input
 						className="label__input"
 						value="jewelery"
-						id="jewelery"
 						type="radio"
 						name="categories"
-						onChange={handleChange}
+						onChange={handleChangeCategory}
 					/>
 					<div className="label__circle"></div>
 					Jewelery
@@ -70,10 +71,9 @@ const Sidebar = () => {
 					<input
 						className="label__input"
 						value="men's clothing"
-						id="men"
 						type="radio"
 						name="categories"
-						onChange={handleChange}
+						onChange={handleChangeCategory}
 					/>
 					<div className="label__circle"></div>
 					Men's clothing
@@ -82,14 +82,74 @@ const Sidebar = () => {
 					<input
 						className="label__input"
 						value="women's clothing"
-						id="women"
 						type="radio"
 						name="categories"
-						onChange={handleChange}
+						onChange={handleChangeCategory}
 					/>
 					<div className="label__circle"></div>
 					Women's clothing
 				</label>
+
+
+			</form>
+			<h3 className='h3'>Rating</h3>
+			<form className="form-side">
+				<label className="label">
+					<input
+						className="label__input"
+						onChange={handleChangeRate}
+						value=""
+						type="radio"
+						name="rate"
+					/>
+					<div className="label__circle"></div>
+					All
+				</label>
+				<label className="label">
+					<input
+						className="label__input"
+						onChange={handleChangeRate}
+						value="5"
+						type="radio"
+						name="rate"
+					/>
+					<div className="label__circle"></div>
+					5 stars
+				</label>
+				<label className="label">
+					<input
+						className="label__input"
+						value="4"
+						type="radio"
+						name="rate"
+						onChange={handleChangeRate}
+					/>
+					<div className="label__circle"></div>
+					4 stars
+				</label>
+				<label className="label">
+					<input
+						className="label__input"
+						value="3"
+						type="radio"
+						name="rate"
+						onChange={handleChangeRate}
+					/>
+					<div className="label__circle"></div>
+					3 stars
+				</label>
+				<label className="label">
+					<input
+						className="label__input"
+						value="2"
+						type="radio"
+						name="rate"
+						onChange={handleChangeRate}
+					/>
+					<div className="label__circle"></div>
+					2 stars
+				</label>
+
 			</form>
 			</aside>
 			)

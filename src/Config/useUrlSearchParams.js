@@ -1,17 +1,17 @@
-import React, {useContext} from 'react'
-import { useSearchParams } from 'react-router-dom'
-import {ProductsContext} from '../Context/ProductsContext.js'
+// import { useSearchParams } from 'react-router-dom'
 
-export function AddUrlQuery(value) {
-	const {category, searchstring} = useContext(ProductsContext)
+export function AddUrlQuery(
+	value_a,
+	value_b,
+	value_c,
+	value_d
+	) {
+	const valores = window.location.search
+	const urlParams = new URLSearchParams(valores)
+	value_a.trim()===''?urlParams.delete('category'):urlParams.set('category', value_a)
+	value_b.trim()===''?urlParams.delete('q'):urlParams.set('q',value_b)
+	value_c.trim()===''?urlParams.delete('rate'):urlParams.set('rate',value_c)
+	value_d.trim()===''?urlParams.delete('sort'):urlParams.set('sort',value_d)
 
-	const [searchParams, setSearchParams] = useSearchParams()
-
-	if (category.trim()===''||category.trim()==='all') {
-		setSearchParams({'q':value})
-	} else if (searchstring.trim()==='') {
-		setSearchParams({'category':value})
-	} else {
-		setSearchParams({category, 'q':searchstring})
-	}
+	return (urlParams)
 }

@@ -14,7 +14,6 @@ const ProductDetail = () => {
 	const { rating, title } = state
 
 	let {id} = useParams();
-	console.log(state)
 
 	useEffect(() => {
 		const GetProduct = async () => {

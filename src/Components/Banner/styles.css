@@ -20,11 +20,26 @@
 	z-index: -99999;
 }
 
-h1 {
+.header {
+	cursor: pointer;
 	position: relative;
 	color: #ffffff;
 	font-size: 5rem;
 	line-height: 0.9;
 	text-align: center;
-	text-shadow: 1px 1px 2px black;
+	text-shadow: 2px 2px 4px black;
+}
+
+.header::after {
+	display: block;
+	content: '';
+	width: 0;
+	height: .5rem;
+	background: linear-gradient(to left, orange, red);
+	border-radius: 5px;
+	transition: width .3s;
+}
+
+.header:hover::after {
+	width: 100%;
 }

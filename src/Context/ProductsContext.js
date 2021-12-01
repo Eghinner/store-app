@@ -5,7 +5,11 @@ import {
 	SET_LOADING,
 	SET_SEARCH,
 	UPDATE_PRODUCTS,
-	RESET
+	RESET,
+	SET_RATE,
+	SET_SORT,
+	FILTER_RATE_PRODUCTS,
+	SORT_PRODUCTS
 } from '../Types'
 import ClienteAxios from '../Config/ClienteAxios.js'
 import { useSearchParams } from 'react-router-dom'
@@ -19,23 +23,34 @@ const ProductsState = ({children}) => {
 		products: [],
 		productsfilter: [],
 		category: '',
+		rate: '',
 		loading: false,
-		searchstring: ''
+		searchstring: '',
+		sort: ''
 	}
 
 	const [searchParams] = useSearchParams()
 
 	const hascategoryurlquery = searchParams.has('category')
 	const hasquerysearch = searchParams.has('q')
+	const hassorturlquery = searchParams.has('sort')
+	const hasqueryrate = searchParams.has('rate')
+
 	const categoryurlquery = searchParams.get('category')
 	const querysearch = searchParams.get('q')
+	const querysort = searchParams.get('sort')
+	const queryrate = searchParams.get('rate')
+
 
 	useEffect(() => {
 		if (hasquerysearch) setSearch(querysearch)
 		if (hascategoryurlquery) getCategories(categoryurlquery)
-			// updateProducts()
+		if (hassorturlquery) sortProds(querysort)
+		if (hasqueryrate) setRate(queryrate)
 	// eslint-disable-next-line
-	}, [searchParams])
+	}, [])
+
+
 
 	const ProductsReducer = (state, action) => {
 		switch(action.type) {
@@ -48,6 +63,11 @@ const ProductsState = ({children}) => {
 				return {
 					...state,
 					category: action.payload
+				}
+			case SET_RATE:
+				return {
+					...state,
+					rate: action.payload
 				}
 			case SET_LOADING:
 				return {
@@ -62,15 +82,48 @@ const ProductsState = ({children}) => {
 			case UPDATE_PRODUCTS:
 				return {
 					...state,
-					productsfilter: state.searchstring.trim() === '' ? []
-					: state.products.filter(pro=>pro.title.toLowerCase().includes(state.searchstring))
+					productsfilter:
+					// state.productsfilter.length===0
+					!hasqueryrate
+					?
+					// state.searchstring.trim() === '' ? []:
+					state.products.filter(pro=>pro.title.toLowerCase().includes(state.searchstring))
+					:
+					state.products.filter(pro=>parseInt(state.rate)===Math.round(pro.rating.rate))
+								  .filter(pro=>pro.title.toLowerCase().includes(state.searchstring))
+					// state.searchstring.trim() === '' ? [] :
+					// state.productsfilter.filter(pro=>pro.title.toLowerCase().includes(state.searchstring))
+				}
+			case FILTER_RATE_PRODUCTS:
+				return {
+					...state,
+					productsfilter:
+					state.productsfilter.length===0
+					? state.products.filter(pro=>
+						parseInt(state.rate)===Math.round(pro.rating.rate))
+					: state.productsfilter.filter(pro=>
+						parseInt(state.rate)===Math.round(pro.rating.rate))
 				}
 			case RESET:
 				return {
 					...state,
 					productsfilter: [],
 					category: '',
-					searchstring: ''
+					rate: '',
+					searchstring: '',
+					sort: ''
+				}
+			case SET_SORT:
+				return {
+					...state,
+					sort: action.payload
+				}
+			case SORT_PRODUCTS:
+				return {
+					...state,
+					products:
+					state.sort==='price'?state.products.sort((a, b) => b.price - a.price)
+					:state.products.sort((a, b) => a.id - b.id)
 				}
 			default:
 				return state
@@ -106,6 +159,13 @@ const ProductsState = ({children}) => {
 		})
 	}
 
+	const setRate = rate => {
+		dispatch({
+			type: SET_RATE,
+			payload: rate
+		})
+	}
+
 	const setLoading = bool => {
 		dispatch({
 			type: SET_LOADING,
@@ -126,9 +186,28 @@ const ProductsState = ({children}) => {
 		})
 	}
 
+	const filterRateProducts = () => {
+		dispatch({
+			type: FILTER_RATE_PRODUCTS
+		})
+	}
+
 	const reseto = () => {
 		dispatch({
 			type: RESET
+		})
+	}
+
+	const sortProds = value => {
+		dispatch({
+			type: SET_SORT,
+			payload: value
+		})
+	}
+
+	const getSort = () => {
+		dispatch({
+			type: SORT_PRODUCTS
 		})
 	}
 
@@ -141,12 +220,18 @@ const ProductsState = ({children}) => {
 				category: state.category,
 				loading: state.loading,
 				searchstring: state.searchstring,
+				rate: state.rate,
+				sort: state.sort,
 				setLoading,
 				getProducts,
 				getCategories,
+				setRate,
 				setSearch,
 				updateProducts,
-				reseto
+				reseto,
+				sortProds,
+				filterRateProducts,
+				getSort
 			}}
 		>
 		{children}

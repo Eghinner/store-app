@@ -13,7 +13,7 @@ input[type='text'] {
 }
 
 select {
-	padding: 0.7rem;
+	padding: 0.65rem;
 	outline: none;
 	border-left: 1px grey solid !important;
 	border: none;

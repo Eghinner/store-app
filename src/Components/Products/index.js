@@ -13,50 +13,93 @@ const Products = () => {
 	const hasquerysearch = searchParams.has('q')
 	const querysearch = searchParams.get('q')
 	const categorysearch = searchParams.get('category')
+	const hasqueryrate = searchParams.has('rate')
+	// const categoryurlquery = searchParams.get('category')
+	const queryrate = searchParams.get('rate')
 
 	const {
-		getProducts,
+		loading,
 		products,
 		category,
-		loading,
+		sort,
+		// rate,
 		productsfilter,
-		updateProducts
+		updateProducts,
+		// filterRateProducts,
+		getProducts,
+		getSort
 	} = useContext(ProductsContext)
 
-	// Obtener products una unica vez
+	// function sortProd(argument) {
+	// 	argument.sort((a, b) => b.price - a.price)
+	// }
+	// function sortProdu(argument) {
+	// 	argument.sort((a, b) => a.rating.rate - b.rating.rate)
+	// }
+	// function sortReset(argument) {
+	// 	argument.sort((a, b) => a.id - b.id)
+	// }
+
 	useEffect(() => {
 		getProducts()
 	// eslint-disable-next-line
-	}, [
-	categorysearch
-	// category
-	])
+	}, [categorysearch])
 
 	useEffect(() => {
-		// if (hasquerysearch||categoryurlquery) {
-			updateProducts()
-		// }
+		getSort()
+	// eslint-disable-next-line
+	}, [sort])
+
+	// if (sort.trim()==='') {
+		// sortReset(products)
+	// }
+	// if (sort.trim()==='price') {
+	// 	sortProd(products)
+	// }
+	// if (sort.trim()==='rate') {
+		// sortProdu(products)
+	// }
+
+	useEffect(() => {
+		updateProducts()
 	// eslint-disable-next-line
 	}, [
-	searchParams,
+	querysearch,
+	queryrate,
 	category,
 	products
 	])
+
+	// useEffect(() => {
+	// 	// getProducts()
+	// 	filterRateProducts()
+	// }, [
+	// 	queryrate,
+	//  	categoryurlquery,
+	//  	products
+	// ])
 
 	return (
 		<React.Fragment>
 
 			<div className='list-product'>
+				{}
 				{
 					hasquerysearch
-					?<div className='alert'>
-					{productsfilter.length===0?'No hay resultados de ': 'Resultados de '}
-					<span>{querysearch}</span></div>
+					?
+					<div className='alert'>
+						{productsfilter.length===0?'No hay resultados de ': 'Resultados de '}
+						<span className="searchquery">{querysearch}</span>
+					</div>
 					:null
 				}
 				{loading
 					?<Spinner/>
-					: (querysearch)
+					: (
+						hasquerysearch
+						||
+					 	hasqueryrate
+					 )
 					? (productsfilter)
 					.map(product=>(
 						<Product

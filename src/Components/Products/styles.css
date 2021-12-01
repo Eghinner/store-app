@@ -12,3 +12,8 @@
 	background-color: lightgrey;
 	max-height: 30px;
 }
+
+.searchquery {
+	font-weight: bold;
+	font-size: 1.1rem;
+}
