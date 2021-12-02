@@ -83,16 +83,12 @@ const ProductsState = ({children}) => {
 				return {
 					...state,
 					productsfilter:
-					// state.productsfilter.length===0
 					!hasqueryrate
 					?
-					// state.searchstring.trim() === '' ? []:
 					state.products.filter(pro=>pro.title.toLowerCase().includes(state.searchstring))
 					:
 					state.products.filter(pro=>parseInt(state.rate)===Math.round(pro.rating.rate))
 								  .filter(pro=>pro.title.toLowerCase().includes(state.searchstring))
-					// state.searchstring.trim() === '' ? [] :
-					// state.productsfilter.filter(pro=>pro.title.toLowerCase().includes(state.searchstring))
 				}
 			case FILTER_RATE_PRODUCTS:
 				return {
@@ -137,7 +133,6 @@ const ProductsState = ({children}) => {
 		let result;
 		try {
 			setLoading(true)
-			// if (state.category.trim()==='') {
 			if (!hascategoryurlquery) {
 				 result = await ClienteAxios.get(`/products`)
 			} else {

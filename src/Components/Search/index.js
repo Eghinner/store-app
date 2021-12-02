@@ -19,8 +19,6 @@ const Search = () => {
 	const {
 		setSearch,
 		sortProds,
-		// searchstring
-		// products,
 		sort
 	} = useContext(ProductsContext)
 

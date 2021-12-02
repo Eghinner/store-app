@@ -18,41 +18,10 @@ const Home = () => {
 
 	const [searchParams, setSearchParams] = useSearchParams()
 
-	// const currentParams = Object.fromEntries([...searchParams])
-	// currentParams.sort = value //Agrega un nuevo key/value
-	// setSearchParams(currentParams) //Agrega la actual y la nueva
-
 	useEffect(() => {
 		setSearchParams(AddUrlQuery(category, searchstring, rate, sort))
 	// eslint-disable-next-line
 	}, [category, searchstring, rate, sort, searchParams])
-
-	// useEffect(() => {
-		// if (
-		// 	category.trim()===''
-		// 	&&
-		// 	searchstring.trim()===''
-		// 	) {
-		// 	navigate('/')
-		// } else {
-
-			// category.trim()!==''&&(currentParams.category = category)
-			// searchstring.trim()!==''&&(currentParams.q = searchstring)
-			// setSearchParams(currentParams)
-
-			// if (category.trim()==='') {
-			// 	setSearchParams({'q':searchstring})
-			// } else if (searchstring.trim()==='') {
-			// 	setSearchParams({'category':category})
-			// } else {
-			// 	setSearchParams({'category':category, 'q':searchstring})
-			// }
-		// }
-	// eslint-disable-next-line
-	// }, [category,
-	//  	searchstring,
-	//   	searchParams
-	// ])
 
 	return (
 		<React.Fragment>

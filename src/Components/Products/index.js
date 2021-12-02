@@ -9,12 +9,11 @@ const Products = () => {
 
 	const [searchParams] = useSearchParams()
 
-	// const categoryurlquery = searchParams.has('category')
 	const hasquerysearch = searchParams.has('q')
+	const hasqueryrate = searchParams.has('rate')
+
 	const querysearch = searchParams.get('q')
 	const categorysearch = searchParams.get('category')
-	const hasqueryrate = searchParams.has('rate')
-	// const categoryurlquery = searchParams.get('category')
 	const queryrate = searchParams.get('rate')
 	const querysort = searchParams.get('sort')
 
@@ -22,18 +21,14 @@ const Products = () => {
 		loading,
 		products,
 		category,
-		// sort,
-		// rate,
 		productsfilter,
 		updateProducts,
-		// filterRateProducts,
 		getProducts,
 		getSort
 	} = useContext(ProductsContext)
 
 	useEffect(() => {
 		getProducts()
-		// setTimeout(getSort(), 10000)
 	// eslint-disable-next-line
 	}, [categorysearch])
 
@@ -41,11 +36,6 @@ const Products = () => {
 		getSort()
 	// eslint-disable-next-line
 	}, [querysort])
-
-	// useEffect(() => {
-	// 	getSort()
-	// // eslint-disable-next-line
-	// }, [])
 
 	useEffect(() => {
 		updateProducts()
@@ -61,7 +51,6 @@ const Products = () => {
 		<React.Fragment>
 
 			<div className='list-product'>
-				{}
 				{
 					hasquerysearch
 					?

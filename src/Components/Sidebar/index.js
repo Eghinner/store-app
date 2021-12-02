@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import './styles.css'
 import { ProductsContext } from '../../Context/ProductsContext.js'
-// import {filterNodeList} from '../../Config/filterNode.js'
 
 const Sidebar = () => {
 
