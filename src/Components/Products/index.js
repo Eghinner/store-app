@@ -16,12 +16,13 @@ const Products = () => {
 	const hasqueryrate = searchParams.has('rate')
 	// const categoryurlquery = searchParams.get('category')
 	const queryrate = searchParams.get('rate')
+	const querysort = searchParams.get('sort')
 
 	const {
 		loading,
 		products,
 		category,
-		sort,
+		// sort,
 		// rate,
 		productsfilter,
 		updateProducts,
@@ -30,35 +31,21 @@ const Products = () => {
 		getSort
 	} = useContext(ProductsContext)
 
-	// function sortProd(argument) {
-	// 	argument.sort((a, b) => b.price - a.price)
-	// }
-	// function sortProdu(argument) {
-	// 	argument.sort((a, b) => a.rating.rate - b.rating.rate)
-	// }
-	// function sortReset(argument) {
-	// 	argument.sort((a, b) => a.id - b.id)
-	// }
-
 	useEffect(() => {
 		getProducts()
+		// setTimeout(getSort(), 10000)
 	// eslint-disable-next-line
 	}, [categorysearch])
 
 	useEffect(() => {
 		getSort()
 	// eslint-disable-next-line
-	}, [sort])
+	}, [querysort])
 
-	// if (sort.trim()==='') {
-		// sortReset(products)
-	// }
-	// if (sort.trim()==='price') {
-	// 	sortProd(products)
-	// }
-	// if (sort.trim()==='rate') {
-		// sortProdu(products)
-	// }
+	// useEffect(() => {
+	// 	getSort()
+	// // eslint-disable-next-line
+	// }, [])
 
 	useEffect(() => {
 		updateProducts()
@@ -69,15 +56,6 @@ const Products = () => {
 	category,
 	products
 	])
-
-	// useEffect(() => {
-	// 	// getProducts()
-	// 	filterRateProducts()
-	// }, [
-	// 	queryrate,
-	//  	categoryurlquery,
-	//  	products
-	// ])
 
 	return (
 		<React.Fragment>

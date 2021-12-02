@@ -122,7 +122,8 @@ const ProductsState = ({children}) => {
 				return {
 					...state,
 					products:
-					state.sort==='price'?state.products.sort((a, b) => b.price - a.price)
+					state.sort==='price'
+					?state.products.sort((a, b) => b.price - a.price)
 					:state.products.sort((a, b) => a.id - b.id)
 				}
 			default:
@@ -136,7 +137,8 @@ const ProductsState = ({children}) => {
 		let result;
 		try {
 			setLoading(true)
-			if (state.category.trim()==='' || state.category.trim()==='all') {
+			// if (state.category.trim()==='') {
+			if (!hascategoryurlquery) {
 				 result = await ClienteAxios.get(`/products`)
 			} else {
 				 result = await ClienteAxios.get(`/products/category/${categoryurlquery}`)

@@ -1,5 +1,5 @@
 .list-product {
-	margin: 1rem 0;
+	/*margin: 1rem 0;*/
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -9,8 +9,9 @@
 
 .alert {
 	width: 100%;
+	padding: 1rem;
 	background-color: lightgrey;
-	max-height: 30px;
+	/*max-height: 30px;*/
 }
 
 .searchquery {
