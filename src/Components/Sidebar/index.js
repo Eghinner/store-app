@@ -9,7 +9,7 @@ const Sidebar = () => {
 	const nodo = document.querySelectorAll('input[type=radio]')
 
 	useEffect(() => {
-		for (var i = nodo.length - 1; i >= 0; i--) {
+		for (let i = nodo.length - 1; i >= 0; i--) {
 			if (category === nodo[i].value || rate === nodo[i].value) {
 				nodo[i].parentNode.classList.add("mystyle")
 			} else {

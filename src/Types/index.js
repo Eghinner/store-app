@@ -8,3 +8,7 @@ export const SET_RATE = 'SET_RATE'
 export const SET_SORT = 'SET_SORT'
 export const SORT_PRODUCTS = 'SORT_PRODUCTS'
 export const FILTER_RATE_PRODUCTS = 'FILTER_RATE_PRODUCTS'
+
+
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const DELETE_TO_CART = 'DELETE_TO_CART'

@@ -19,7 +19,7 @@
 	object-fit: contain;
 }
 
-button {
+.btn {
 	color: #ff8a14;
 	border-radius: 5px;
 	background-color: transparent;

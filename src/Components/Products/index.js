@@ -13,7 +13,7 @@ const Products = () => {
 	const hasqueryrate = searchParams.has('rate')
 
 	const querysearch = searchParams.get('q')
-	const categorysearch = searchParams.get('category')
+	// const categorysearch = searchParams.get('category')
 	const queryrate = searchParams.get('rate')
 	const querysort = searchParams.get('sort')
 
@@ -29,23 +29,19 @@ const Products = () => {
 
 	useEffect(() => {
 		getProducts()
-	// eslint-disable-next-line
-	}, [categorysearch])
-
-	useEffect(() => {
-		getSort()
-	// eslint-disable-next-line
-	}, [querysort])
+	}, [getProducts])
 
 	useEffect(() => {
 		updateProducts()
-	// eslint-disable-next-line
-	}, [
-	querysearch,
-	queryrate,
-	category,
-	products
-	])
+	}, [querysearch, queryrate, category, products, updateProducts])
+
+
+
+	useEffect(() => {
+		getSort()
+	}, [getSort, querysort])
+
+
 
 	return (
 		<React.Fragment>

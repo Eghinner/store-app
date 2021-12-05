@@ -13,8 +13,7 @@ const Search = () => {
 
 	useEffect(() => {
 		searchParams.has('q')&&setToSearch(querysearch)
-		// eslint-disable-next-line
-	}, [querysearch])
+	}, [querysearch, searchParams])
 
 	const {
 		setSearch,
@@ -25,7 +24,7 @@ const Search = () => {
 	const nodo = document.querySelectorAll('option')
 
 	useEffect(() => {
-		for (var i = nodo.length - 1; i >= 0; i--) {
+		for (let i = nodo.length - 1; i >= 0; i--) {
 			if (sort === nodo[i].value) {
 				nodo[i].selected = true
 			}
@@ -47,10 +46,6 @@ const Search = () => {
 		sortProds(value)
 	}
 
-
-	// Vaciar input text en onBlur
-	// onBlur={()=>setToSearch('')}
-
 	return (
 		<React.Fragment>
 			<div className='search'>
@@ -67,9 +62,6 @@ const Search = () => {
 						<select name="sort" onChange={selectChange}>
 							<option value="">Defecto</option>
 							<option value="price">Price</option>
-							{
-								// <option value="rate">Rate</option>
-							}
 						</select>
 				</form>
 			</div>

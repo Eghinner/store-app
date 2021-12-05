@@ -8,7 +8,7 @@
 }
 
 body {
-	background-color: #f30000;
+	background-color: #e2e2e2;
 }
 
 @media (min-width: 900px) {
@@ -18,18 +18,18 @@ body {
 }
 
 ::-webkit-scrollbar {
-      width: .4rem;
+	width: .4rem;
 
 }
 
 ::-webkit-scrollbar-track {
-      background: linear-gradient(#ff0080, #ff0000);
+	background: linear-gradient(#ff0080, #ff0000);
 
 }
 
 ::-webkit-scrollbar-thumb {
 	border-radius: 3rem;
-      background-color: #ffa500;
+	background-color: #ffa500;
 }
 
 a {
@@ -39,4 +39,8 @@ a {
 .contenedor {
 	background-color: #fff;
 	min-height: 70vh;
+}
+
+.banner::after{
+	/*background-image: url('../public/img/img.jpg');*/
 }

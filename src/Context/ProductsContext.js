@@ -1,4 +1,4 @@
-import {createContext, useReducer, useEffect} from 'react'
+import {createContext, useReducer, useEffect, useCallback} from 'react'
 import {
 	GET_PRODUCTS,
 	SELECT_CATEGORY,
@@ -85,20 +85,19 @@ const ProductsState = ({children}) => {
 					productsfilter:
 					!hasqueryrate
 					?
-					state.products.filter(pro=>pro.title.toLowerCase().includes(state.searchstring))
+					state.products
+						.filter(pro=>
+							pro.title
+							.toLowerCase()
+							.includes(state.searchstring))
 					:
-					state.products.filter(pro=>parseInt(state.rate)===Math.round(pro.rating.rate))
-								  .filter(pro=>pro.title.toLowerCase().includes(state.searchstring))
-				}
-			case FILTER_RATE_PRODUCTS:
-				return {
-					...state,
-					productsfilter:
-					state.productsfilter.length===0
-					? state.products.filter(pro=>
-						parseInt(state.rate)===Math.round(pro.rating.rate))
-					: state.productsfilter.filter(pro=>
-						parseInt(state.rate)===Math.round(pro.rating.rate))
+					state.products
+						.filter(pro=>
+							parseInt(state.rate)===Math.round(pro.rating.rate))
+							.filter(pro=>
+								pro.title
+								.toLowerCase()
+								.includes(state.searchstring))
 				}
 			case RESET:
 				return {
@@ -119,8 +118,10 @@ const ProductsState = ({children}) => {
 					...state,
 					products:
 					state.sort==='price'
-					?state.products.sort((a, b) => b.price - a.price)
-					:state.products.sort((a, b) => a.id - b.id)
+					?state.products
+						.sort((a, b) => b.price - a.price)
+					:state.products
+						.sort((a, b) => a.id - b.id)
 				}
 			default:
 				return state
@@ -129,7 +130,7 @@ const ProductsState = ({children}) => {
 
 	const [state, dispatch] = useReducer(ProductsReducer, initialState)
 
-	const getProducts = async () => {
+	const getProducts = useCallback( async () => {
 		let result;
 		try {
 			setLoading(true)
@@ -147,7 +148,13 @@ const ProductsState = ({children}) => {
 		} finally {
 			setLoading(false)
 		}
-	}
+	},[categoryurlquery, hascategoryurlquery])
+
+	const updateProducts = useCallback(value => {
+		dispatch({
+			type: UPDATE_PRODUCTS
+		})
+	},[])
 
 	const getCategories = category => {
 		dispatch({
@@ -177,12 +184,6 @@ const ProductsState = ({children}) => {
 		})
 	}
 
-	const updateProducts = value => {
-		dispatch({
-			type: UPDATE_PRODUCTS
-		})
-	}
-
 	const filterRateProducts = () => {
 		dispatch({
 			type: FILTER_RATE_PRODUCTS
@@ -202,14 +203,13 @@ const ProductsState = ({children}) => {
 		})
 	}
 
-	const getSort = () => {
-		dispatch({
+	const getSort = useCallback(() => {
+			dispatch({
 			type: SORT_PRODUCTS
-		})
-	}
+			})
+	},[])
 
 	return (
-
 		<ProductsContext.Provider
 			value={{
 				products: state.products,

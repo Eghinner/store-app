@@ -1,13 +1,16 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import ClienteAxios from '../../Config/ClienteAxios'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+import {CartContext} from '../../Context/CartContext.js'
 import Spinner from '../Spinner'
 import './styles.css'
-import { useSearchParams } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const ProductDetail = () => {
 
-	const [setSearchParams] = useSearchParams()
+	const navigate = useNavigate();
+
+	const {addToCart} = useContext(CartContext)
 
 	const [state, setState] = useState([])
 
@@ -21,22 +24,47 @@ const ProductDetail = () => {
 		setState(respuesta.data)
 		}
 		GetProduct()
-	// eslint-disable-next-line
-	}, [])
+	}, [id])
 
-	function FakeParams() {
-		setSearchParams({title})
+	useEffect(() => {
+		state.qty=1
+	}, [state])
+
+	const handleClick = () => {
+		addToCart(state)
+		Swal.fire({
+		  title: 'Success!',
+		  text: 'This product has been add to your cart',
+		  imageUrl: `${state.image}`,
+		  // imageWidth: 'auto',
+		  imageHeight: 300,
+		  imageAlt: 'Custom image',
+		  showConfirmButton: false,
+		  timer: 1200
+		})
 	}
 
 	return (
 		<React.Fragment>
 			<div className='content'>
+				<div
+					onClick={() => id!=='1' ? navigate(`../${--id}`):null}
+					className="arrow left"
+				>
+					<i class="fas fa-arrow-left"></i>
+				</div>
+				<div
+					onClick={() => id!=='20' ? navigate(`../${++id}`): null}
+					className="arrow right"
+				>
+					<i class="fas fa-arrow-right"></i>
+				</div>
 				{state.length===0
 					?<Spinner/>
 					:(<>
 					<img className='img-product' src={state.image} alt="images"/>
 					<div className="info">
-						<h1 className='title-product'>{state.title}</h1>
+						<h1 className='title-product'>{title}</h1>
 						<p className='product-description'>{state.description}</p>
 						<div>
 							<div className='data'>
@@ -44,9 +72,15 @@ const ProductDetail = () => {
 									<span className="fa fa-star checked"></span>
 									{rating.rate}
 								</div>
-								<div className="price">${state.price}</div>
+								<div className='price-tag'>${state.price}</div>
 							</div>
-							<button onClick={FakeParams} type="button">Buy!</button>
+							<button
+								className='btn'
+								type="button"
+								onClick={handleClick}
+							>
+								Add to Card
+							</button>
 					</div>
 					</div>
 					</>
