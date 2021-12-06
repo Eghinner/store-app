@@ -11,6 +11,7 @@ const Products = () => {
 
 	const hasquerysearch = searchParams.has('q')
 	const hasqueryrate = searchParams.has('rate')
+	const hascategory = searchParams.has('category')
 
 	const querysearch = searchParams.get('q')
 	// const categorysearch = searchParams.get('category')
@@ -47,11 +48,15 @@ const Products = () => {
 		<React.Fragment>
 
 			<div className='list-product'>
+				{	(hascategory&&hasqueryrate)&&productsfilter.length===0
+					?<div className="alert">There are no articles in this category.</div>
+					:null
+				}
 				{
 					hasquerysearch
 					?
 					<div className='alert'>
-						{productsfilter.length===0?'No hay resultados de ': 'Resultados de '}
+						{productsfilter.length===0?'No results for ': 'Results for '}
 						<span className="searchquery">{querysearch}</span>
 					</div>
 					:null
