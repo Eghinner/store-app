@@ -29,9 +29,8 @@ const CartState = ({children}) => {
 					...state,
 					cartproducts:
 					exist(action.payload.id)
-					//
-					? [ali,...noali]
-					: [...cartproducts, action.payload]
+						? [ali,...noali]
+						: [...cartproducts, action.payload]
 			}
 			case DELETE_TO_CART:
 				return {

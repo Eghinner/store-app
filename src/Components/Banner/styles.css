@@ -67,3 +67,22 @@
 	transform: scale(1.1);
 	background-color: orange;
 }
+
+.container__docker {
+	position: absolute;
+	right: 0;
+	top: 0;
+	transform: translate(50%, -50%);
+
+	/* Center the content */
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	background-color: blue;
+	height: 15px;
+	width: 15px;
+	border-radius: 100%;
+	color: #fff;
+	z-index: 999999999999999999999;
+	font-weight: 600;
+}

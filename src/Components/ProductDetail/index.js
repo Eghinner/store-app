@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import ClienteAxios from '../../Config/ClienteAxios'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import {CartContext} from '../../Context/CartContext.js'
 import Spinner from '../Spinner'
+// import Placeholder from '../Placeholder'
 import './styles.css'
 import Swal from 'sweetalert2'
 
@@ -43,25 +44,31 @@ const ProductDetail = () => {
 		  timer: 1200
 		})
 	}
-
+//
 	return (
 		<React.Fragment>
 			<div className='content'>
+				<Link to='..'>
+					<div className="back"><i className="fas fa-arrow-left"></i></div>
+				</Link>
 				<div
 					onClick={() => id!=='1' ? navigate(`../${--id}`):null}
 					className="arrow left"
-				>
-					<i class="fas fa-arrow-left"></i>
+					>
+					<i className="fas fa-arrow-left"></i>
 				</div>
 				<div
 					onClick={() => id!=='20' ? navigate(`../${++id}`): null}
 					className="arrow right"
-				>
-					<i class="fas fa-arrow-right"></i>
+					>
+					<i className="fas fa-arrow-right"></i>
 				</div>
-				{state.length===0
+				{
+					state.length===0
 					?<Spinner/>
-					:(<>
+					:
+					(
+					<>
 					<img className='img-product' src={state.image} alt="images"/>
 					<div className="info">
 						<h1 className='title-product'>{title}</h1>

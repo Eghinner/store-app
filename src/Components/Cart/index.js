@@ -5,12 +5,15 @@ import './styles.css'
 
 const Cart = () => {
 
+	// const [totalproducto, setTotalP] = useState(0)
+
 	const {cartproducts, deleteToCart} = useContext(CartContext)
 
 	const total = []
 
 	cartproducts.forEach(pr=>{
-		total.push(pr.price)
+		const totalproducto = pr.price * pr.qty
+		total.push(totalproducto)
 	})
 
 	const valorfinal = total.length!==0 ? total.reduce( (a,b) => a + b ) : 0
@@ -81,7 +84,7 @@ const Cart = () => {
 				    				<div
 				    					className="col col-6"
 				    					data-label="Total"
-				    				>${cp.price}</div>
+				    				>${cp.price*cp.qty}</div>
 				    			</li>
 							)
 				    	}

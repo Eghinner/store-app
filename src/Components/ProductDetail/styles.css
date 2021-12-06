@@ -10,6 +10,22 @@
 	-moz-box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.5) inset;
 }
 
+.back {
+	border-radius: 40%;
+	font-size: 2rem;
+	/*width: 70px;*/
+	/*height: 70px;*/
+	position: absolute;
+	top: 40%;
+	right: 20%;
+	padding: 1rem;
+	transition: ease .5s background-color;
+}
+.back:hover {
+	background-color: gray;
+	opacity: .7;
+}
+
 .arrow {
 	top: 100%;
 	padding: .5rem;
@@ -51,6 +67,10 @@
 .img-product {
 	height: 500px;
 	object-fit: contain;
+}
+
+.placeholder {
+	background-color: grey;
 }
 
 .data {
