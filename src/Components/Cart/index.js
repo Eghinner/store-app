@@ -6,7 +6,12 @@ import './styles.css'
 
 const Cart = () => {
 
-	const {cartproducts, deleteToCart, emptyCart} = useContext(CartContext)
+	const {
+		cartproducts,
+		deleteToCart,
+		emptyCart,
+		editProd
+	} = useContext(CartContext)
 
 	const total = []
 
@@ -23,6 +28,16 @@ const Cart = () => {
 
 	const empty = () => {
 		emptyCart()
+	}
+
+	const addProduct = cp => {
+		cp.qty+=1
+		editProd(cp)
+	}
+
+	const subtracttProduct = cp => {
+		if (cp.qty>1) cp.qty-=1
+		editProd(cp)
 	}
 
 	return (
@@ -84,20 +99,22 @@ const Cart = () => {
 				    					className="col col-5"
 				    					data-label="Quantity"
 				    				>
-				    				<input
-				    					active
-				    					type="number"
-				    					value={cp.qty}
-				    				/>
-				    				{
-				    				//<button>+</button>
-				    				//<button>-</button>
-				    				}
+				    				<button
+				    					className='quantity'
+				    					onClick={()=>addProduct(cp)}
+				    				>+
+				    				</button>
+				    				{cp.qty}
+				    				<button
+				    					className='quantity'
+				    					onClick={()=>subtracttProduct(cp)}
+				    				>-
+				    				</button>
 				    				</div>
 				    				<div
 				    					className="col col-6"
 				    					data-label="Total"
-				    				>${cp.price*cp.qty}</div>
+				    				>${(cp.price*cp.qty).toFixed(2)}</div>
 				    			</li>
 							)
 				    	}
@@ -116,7 +133,7 @@ const Cart = () => {
 				  		onClick={empty}
 				  		>empty
 				  	</button>
-				  	<span className='total'>Total ${valorfinal}</span>
+				  	<span className='total'>Total ${valorfinal.toFixed(2)}</span>
 				  </div>
 				</div>
 			}

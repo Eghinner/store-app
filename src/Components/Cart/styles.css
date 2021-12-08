@@ -114,10 +114,23 @@
 	}
 }
 
-input[type='number'] {
-	width: 30px;
+.col-5 {
+	display: flex;
+	justify-content: center;
 }
 
-input[type="number"]::-webkit-outer-spin-button {
-	background-color: red;
+.quantity {
+	margin: 3px;
+	display: flex;
+	align-items: center;
+	height: 20px;
+	outline: none;
+	border: solid 1px red;
+	background-color: transparent;
+	padding: 5px;
+	font-size: 2rem;
+}
+
+.quantity:active {
+	background-color: blue;
 }

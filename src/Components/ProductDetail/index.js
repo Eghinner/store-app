@@ -2,8 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import ClienteAxios from '../../Config/ClienteAxios'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import {CartContext} from '../../Context/CartContext.js'
-import Spinner from '../Spinner'
-// import Placeholder from '../Placeholder'
+import Details from '../Placeholder/Details'
 import './styles.css'
 import Swal from 'sweetalert2'
 
@@ -25,7 +24,6 @@ const ProductDetail = () => {
 		setState(respuesta.data)
 		}
 		GetProduct()
-		console.log('fetch')
 	}, [id])
 
 	useEffect(() => {
@@ -37,14 +35,12 @@ const ProductDetail = () => {
 		  title: 'Success!',
 		  text: 'This product has been add to your cart',
 		  imageUrl: `${state.image}`,
-		  // imageWidth: 'auto',
 		  imageHeight: 300,
 		  imageAlt: 'Custom image',
 		  showConfirmButton: false,
 		  timer: 1200
 		})
 		addToCart(state)
-		// console.log('handleClick')
 	}
 //
 	return (
@@ -67,7 +63,7 @@ const ProductDetail = () => {
 				</div>
 				{
 					state.length===0
-					?<Spinner/>
+					?<Details/>
 					:
 					(
 					<>

@@ -1,4 +1,21 @@
-
+@media (min-width: 900px) {
+	.content {
+		display: flex;
+		align-items: center;
+		justify-content: center
+	}
+	.img-product {
+		max-width: 50%;
+	}
+	.info {
+		padding: 3rem;
+		max-width: 50%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		min-height: 500px;
+	}
+}
 .content {
 	background-color: #fff;
 	margin: auto;
@@ -9,12 +26,16 @@
 	-webkit-box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.5) inset;
 	-moz-box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.5) inset;
 }
-
+.img-product {
+	height: 500px;
+	object-fit: contain;
+	display: flex;
+	margin: auto;
+	width: 100%;
+}
 .back {
 	border-radius: 40%;
 	font-size: 2rem;
-	/*width: 70px;*/
-	/*height: 70px;*/
 	position: absolute;
 	top: 350px;
 	right: 20%;
@@ -25,14 +46,14 @@
 	background-color: gray;
 	opacity: .7;
 }
-
 .arrow {
 	top: 100%;
 	padding: .5rem;
 	color: grey;
 	position: absolute;
 	font-size: 3rem;
-	transition: .7s ease all;
+	transition: .7s ease;
+	transition-property: background color transform opacity;
 }
 
 .arrow:hover {
@@ -63,12 +84,6 @@
 .product-description {
 	line-height: 1.8;
 }
-
-.img-product {
-	height: 500px;
-	object-fit: contain;
-}
-
 .placeholder {
 	background-color: grey;
 }
@@ -87,34 +102,6 @@
 
 .checked {
 	color: orange;
-}
-
-.img-product{
-	display: flex;
-	margin: auto;
-	width: 100%;
-}
-
-@media (min-width: 900px) {
-	.content {
-		display: flex;
-		align-items: center;
-		justify-content: center
-	}
-
-	.img-product {
-		max-width: 50%;
-
-	}
-
-	.info {
-		padding: 3rem;
-		max-width: 50%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		min-height: 500px;
-	}
 }
 
 .btn:hover {

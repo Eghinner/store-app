@@ -1,0 +1,16 @@
+@keyframes titilar {
+	from {
+		opacity: .8;
+	}
+	to {
+		opacity: .5;
+	}
+}
+
+.img-product-placeholder {
+	animation: titilar 0.5s infinite alternate;
+	background-color: grey;
+	min-height: 500px;
+	width: 240px;
+	margin: 10px;
+}

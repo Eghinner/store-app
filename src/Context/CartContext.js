@@ -2,7 +2,8 @@ import {createContext, useReducer} from 'react'
 import {
 	ADD_TO_CART,
 	DELETE_TO_CART,
-	EMPTY_CART
+	EMPTY_CART,
+	EDIT_QTY
 } from '../Types'
 
 export const CartContext = createContext()
@@ -17,15 +18,12 @@ const CartState = ({children}) => {
 		const {cartproducts} = some
 		switch(action.type) {
 			case ADD_TO_CART:
-			// console.log('case')
 			const exist = id => cartproducts.some((elem)=>id===elem.id)
-			// console.log(exist(action.payload.id))
 			const ali = cartproducts.filter(cp => cp.id === action.payload.id)[0]
 			const noali = cartproducts.filter(cp => cp.id !== action.payload.id)
 
 			if (exist(action.payload.id)) {
 				ali.qty+=0.5
-				console.log('quantity')
 			}
 				return {
 					...some,
@@ -43,7 +41,16 @@ const CartState = ({children}) => {
 				return {
 					...some,
 					cartproducts: []
-				}
+			}
+			case EDIT_QTY:
+				return {
+					...some,
+					cartproducts: cartproducts.map( cp =>
+						cp.id===action.payload.id
+						?action.payload
+						:cp
+						)
+			}
 			default:
 				return some
 		}
@@ -52,7 +59,6 @@ const CartState = ({children}) => {
 	const [state, dispatch] = useReducer(CartReducer, initialState)
 
 	const addToCart = producto => {
-		// console.log('addTocart')
 		dispatch({
 			type: ADD_TO_CART,
 			payload: producto
@@ -70,6 +76,12 @@ const CartState = ({children}) => {
 			type: EMPTY_CART
 		})
 	}
+	const editProd = cp => {
+		dispatch({
+			type: EDIT_QTY,
+			payload: cp
+		})
+	}
 
 
 	return (
@@ -78,7 +90,8 @@ const CartState = ({children}) => {
 				cartproducts: state.cartproducts,
 				addToCart,
 				deleteToCart,
-				emptyCart
+				emptyCart,
+				editProd
 			}}
 		>
 		{children}

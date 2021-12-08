@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import './styles.css'
 import Product from '../Product'
 import {ProductsContext} from '../../Context/ProductsContext.js'
-import Spinner from '../Spinner'
+import PlaceholderProducts from '../Placeholder/PlaceholderProducts'
 import { useSearchParams } from 'react-router-dom'
 
 const Products = () => {
@@ -14,7 +14,6 @@ const Products = () => {
 	const hascategory = searchParams.has('category')
 
 	const querysearch = searchParams.get('q')
-	// const categorysearch = searchParams.get('category')
 	const queryrate = searchParams.get('rate')
 	const querysort = searchParams.get('sort')
 
@@ -62,7 +61,14 @@ const Products = () => {
 					:null
 				}
 				{loading
-					?<Spinner/>
+					?
+					<>
+					<PlaceholderProducts/>
+					<PlaceholderProducts/>
+					<PlaceholderProducts/>
+					<PlaceholderProducts/>
+					<PlaceholderProducts/>
+					</>
 					: (
 						hasquerysearch
 						||

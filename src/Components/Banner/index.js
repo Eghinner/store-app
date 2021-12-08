@@ -12,7 +12,6 @@ const Home = () => {
 	const {cartproducts} = useContext(CartContext)
 
 	const qtyprod = cartproducts.map(cp => cp.qty)
-	// console.log(qtyprod)
 
 	const click = () => {
 		navi('/')
