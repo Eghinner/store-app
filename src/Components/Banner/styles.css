@@ -9,9 +9,8 @@
 
 .banner::after {
 	content: "";
-	background: url('../../img/tienda.png') red;
+	background: url('../../img/tienda.png');
 	background-size: cover;
-	background-color: red;
 	position: absolute;
 	top: 0px;
 	right: 0px;

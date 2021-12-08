@@ -16,7 +16,7 @@
 	/*width: 70px;*/
 	/*height: 70px;*/
 	position: absolute;
-	top: 40%;
+	top: 350px;
 	right: 20%;
 	padding: 1rem;
 	transition: ease .5s background-color;
@@ -90,7 +90,9 @@
 }
 
 .img-product{
-	max-width: 200px;
+	display: flex;
+	margin: auto;
+	width: 100%;
 }
 
 @media (min-width: 900px) {
@@ -119,4 +121,8 @@
 	cursor: pointer;
 	background-color: #ff8a14;
 	color: #fff;
+}
+
+.btn:disabled {
+	opacity: .6;
 }

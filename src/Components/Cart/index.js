@@ -1,13 +1,12 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import {CartContext} from '../../Context/CartContext.js'
+import Swal from 'sweetalert2'
 import './styles.css'
 
 const Cart = () => {
 
-	// const [totalproducto, setTotalP] = useState(0)
-
-	const {cartproducts, deleteToCart} = useContext(CartContext)
+	const {cartproducts, deleteToCart, emptyCart} = useContext(CartContext)
 
 	const total = []
 
@@ -20,6 +19,10 @@ const Cart = () => {
 
 	const Delete = id => {
 		deleteToCart(id)
+	}
+
+	const empty = () => {
+		emptyCart()
 	}
 
 	return (
@@ -80,7 +83,17 @@ const Cart = () => {
 				    				<div
 				    					className="col col-5"
 				    					data-label="Quantity"
-				    				>{cp.qty}</div>
+				    				>
+				    				<input
+				    					active
+				    					type="number"
+				    					value={cp.qty}
+				    				/>
+				    				{
+				    				//<button>+</button>
+				    				//<button>-</button>
+				    				}
+				    				</div>
 				    				<div
 				    					className="col col-6"
 				    					data-label="Total"
@@ -93,9 +106,16 @@ const Cart = () => {
 				  	<Link to='../'>
 				  		<button className='btn-cart'>continue shopping</button>
 				  	</Link>
-				  	<Link to='/'>
-				  		<button className='btn-cart'>checkout</button>
-				  	</Link>
+				  	<button
+				  		disabled
+				  		className='btn-cart'
+				  		>checkout
+				  	</button>
+				  	<button
+				  		className='btn-cart'
+				  		onClick={empty}
+				  		>empty
+				  	</button>
 				  	<span className='total'>Total ${valorfinal}</span>
 				  </div>
 				</div>

@@ -25,6 +25,7 @@ const ProductDetail = () => {
 		setState(respuesta.data)
 		}
 		GetProduct()
+		console.log('fetch')
 	}, [id])
 
 	useEffect(() => {
@@ -32,7 +33,6 @@ const ProductDetail = () => {
 	}, [state])
 
 	const handleClick = () => {
-		addToCart(state)
 		Swal.fire({
 		  title: 'Success!',
 		  text: 'This product has been add to your cart',
@@ -43,6 +43,8 @@ const ProductDetail = () => {
 		  showConfirmButton: false,
 		  timer: 1200
 		})
+		addToCart(state)
+		// console.log('handleClick')
 	}
 //
 	return (

@@ -113,3 +113,11 @@
 		text-align: right;
 	}
 }
+
+input[type='number'] {
+	width: 30px;
+}
+
+input[type="number"]::-webkit-outer-spin-button {
+	background-color: red;
+}
