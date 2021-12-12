@@ -1,5 +1,5 @@
 import React from 'react'
-import './styles.css'
+import styles from './styles.module.css'
 import { useNavigate } from "react-router-dom"
 
 const Product = ({product}) => {
@@ -13,17 +13,17 @@ const Product = ({product}) => {
 	}
 
 	return (
-		<div className='card'>
+		<div className={styles.card}>
 			<h3>{product.title}</h3>
-			<img className='img' src={product.image} alt="algo"/>
-			<div className="want">
-				<div className='price-tag'>${product.price}</div>
-				<div className="rating">
-					<span className="fa fa-star checked"></span>
+			<img className={styles.img} src={product.image} alt="algo"/>
+			<div className={styles.want}>
+				<div className={styles.price_tag}>${product.price}</div>
+				<div className={styles.rating}>
+					<span className={`fa fa-star ${styles.checked}`}></span>
 					{rating.rate}
 				</div>
 			</div>
-			<button className="btn" onClick={goTo}>Ver detalle =></button>
+			<button className={styles.btn} onClick={goTo}>Ver detalle =></button>
 		</div>
 	)
 }

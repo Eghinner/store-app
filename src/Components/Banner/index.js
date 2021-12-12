@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import './styles.css'
+import styles from './styles.module.css'
 import {ProductsContext} from '../../Context/ProductsContext.js'
 import {CartContext} from '../../Context/CartContext.js'
 import { Link, useNavigate  } from 'react-router-dom'
@@ -22,8 +22,8 @@ const Home = () => {
 		<React.Fragment>
 
 			<Link to='cart'>
-				<div className="btn-card">
-					<div className="container__docker">
+				<div className={styles.btn_card}>
+					<div className={styles.container__docker}>
 						{ cartproducts.length===0
 							? 0
 							: qtyprod.reduce( (a,b) => a + b)
@@ -31,8 +31,8 @@ const Home = () => {
 					</div>
 				</div>
 			</Link>
-			<div className='banner'>
-				<h1 onClick={click} className='header'>My Store</h1>
+			<div className={styles.banner}>
+				<h1 onClick={click} className={styles.header}>My Store</h1>
 			</div>
 		</React.Fragment>
 	)

@@ -14,18 +14,18 @@ aside {
 		max-width: 300px;
 	}
 
-	.form-side {
+	.form_side {
 		flex-direction: column;
-
 	}
 }
 
-.form-side {
+.form_side {
 	display: flex;
 	flex-wrap: wrap;
 }
 
 .label {
+	text-transform: capitalize;
 	padding: .5rem;
 	margin: 3px;
 	border-radius: 5px;
@@ -39,12 +39,4 @@ aside {
 	font-weight: bold;
 	background: linear-gradient(#ffd700 ,#f37600);
 	box-shadow: 1px 1px 5px 1px gray;
-}
-
-.label__input {
-	position: absolute;
-	opacity: 0;
-	cursor: pointer;
-	height: 0;
-	width: 0;
 }

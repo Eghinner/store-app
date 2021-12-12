@@ -30,6 +30,10 @@
 	transition: ease .4s background-color;
 }
 
+.checked {
+	color: orange;
+}
+
 .card:hover > .btn {
 	cursor: pointer;
 	background-color: #ff8a14;
@@ -47,7 +51,7 @@
 	--price-tag-height: 2rem;
 }
 
-.price-tag {
+.price_tag {
 	max-width: 5rem;
 	background-color: var(--price-tag-background);
 	color: #fff;
@@ -59,7 +63,7 @@
 	padding: .25rem .5rem;
 }
 
-.price-tag::before {
+.price_tag::before {
 	content: '';
 	border-color: transparent var(--price-tag-background) transparent transparent;
 	border-style: solid;
@@ -70,7 +74,7 @@
 	transform: translate(-100%, 0px);
 }
 
-.price-tag::after {
+.price_tag::after {
 	content: '';
 	background: #fff;
 	border-radius: 50%;

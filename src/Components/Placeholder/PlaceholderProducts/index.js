@@ -3,7 +3,13 @@ import './styles.css'
 
 const PlaceholderProducts = () => {
 	return (
-		<div className='img-product-placeholder'></div>
+		<React.Fragment>
+			<div className='img-product-placeholder'></div>
+			<div className='img-product-placeholder'></div>
+			<div className='img-product-placeholder'></div>
+			<div className='img-product-placeholder'></div>
+			<div className='img-product-placeholder'></div>
+		</React.Fragment>
 	)
 }
 

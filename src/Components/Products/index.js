@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import './styles.css'
+import styles from './styles.module.css'
 import Product from '../Product'
 import {ProductsContext} from '../../Context/ProductsContext.js'
 import PlaceholderProducts from '../Placeholder/PlaceholderProducts'
@@ -46,28 +46,24 @@ const Products = () => {
 	return (
 		<React.Fragment>
 
-			<div className='list-product'>
+			<div className={styles.list_product}>
 				{	(hascategory&&hasqueryrate)&&productsfilter.length===0
-					?<div className="alert">There are no articles in this category.</div>
+					?<div className={styles.alert}>There are no articles in this category.</div>
 					:null
 				}
 				{
 					hasquerysearch
 					?
-					<div className='alert'>
+					<div className={styles.alert}>
 						{productsfilter.length===0?'No results for ': 'Results for '}
-						<span className="searchquery">{querysearch}</span>
+						<span className={styles.searchquery}>{querysearch}</span>
 					</div>
 					:null
 				}
 				{loading
 					?
 					<>
-					<PlaceholderProducts/>
-					<PlaceholderProducts/>
-					<PlaceholderProducts/>
-					<PlaceholderProducts/>
-					<PlaceholderProducts/>
+						<PlaceholderProducts/>
 					</>
 					: (
 						hasquerysearch

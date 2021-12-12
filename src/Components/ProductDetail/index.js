@@ -3,7 +3,7 @@ import ClienteAxios from '../../Config/ClienteAxios'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import {CartContext} from '../../Context/CartContext.js'
 import Details from '../Placeholder/Details'
-import './styles.css'
+import styles from './styles.module.css'
 import Swal from 'sweetalert2'
 
 const ProductDetail = () => {
@@ -45,19 +45,21 @@ const ProductDetail = () => {
 //
 	return (
 		<React.Fragment>
-			<div className='content'>
+			<div className={styles.content}>
 				<Link to='..'>
-					<div className="back"><i className="fas fa-arrow-left"></i></div>
+					<div className={styles.back}>
+						<i className="fas fa-arrow-left"></i>
+					</div>
 				</Link>
 				<div
 					onClick={() => id!=='1' ? navigate(`../${--id}`):null}
-					className="arrow left"
+					className={`${styles.left} ${styles.arrow}`}
 					>
 					<i className="fas fa-arrow-left"></i>
 				</div>
 				<div
 					onClick={() => id!=='20' ? navigate(`../${++id}`): null}
-					className="arrow right"
+					className={`${styles.right} ${styles.arrow}`}
 					>
 					<i className="fas fa-arrow-right"></i>
 				</div>
@@ -67,20 +69,26 @@ const ProductDetail = () => {
 					:
 					(
 					<>
-					<img className='img-product' src={state.image} alt="images"/>
-					<div className="info">
-						<h1 className='title-product'>{title}</h1>
-						<p className='product-description'>{state.description}</p>
+					<img className={styles.img_product} src={state.image} alt="images"/>
+					<div className={styles.info}>
+						<h1 className={styles.title_product}>
+							{title}
+						</h1>
+						<p className={styles.product_description}>
+							{state.description}
+						</p>
 						<div>
-							<div className='data'>
-								<div className="rating">
-									<span className="fa fa-star checked"></span>
+							<div className={styles.data}>
+								<div className={styles.rating}>
+									<span className={`fa fa-star ${styles.checked}`}></span>
 									{rating.rate}
 								</div>
-								<div className='price-tag'>${state.price}</div>
+								<div className={styles.price_tag}>
+									${state.price}
+								</div>
 							</div>
 							<button
-								className='btn'
+								className={styles.btn}
 								type="button"
 								onClick={handleClick}
 							>

@@ -23,7 +23,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-	background: linear-gradient(#ff0080, #ff0000);
+	background: #fff;
 
 }
 
@@ -39,8 +39,4 @@ a {
 .contenedor {
 	background-color: #fff;
 	min-height: 70vh;
-}
-
-.banner::after{
-	/*background-image: url('../public/img/img.jpg');*/
 }

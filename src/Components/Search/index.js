@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import './styles.css'
+import styles from './styles.module.css'
 import {ProductsContext} from '../../Context/ProductsContext.js'
 import { useSearchParams } from 'react-router-dom'
 
@@ -48,12 +48,11 @@ const Search = () => {
 
 	return (
 		<React.Fragment>
-			<div className='search'>
+			<div className={styles.search}>
 				<form
 					onSubmit={handleOnsubmit}
 				>
 					<input
-
 						onChange={handleChange}
 						type="text"
 						placeholder='Search'
